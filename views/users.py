@@ -1,4 +1,8 @@
+from flask import request
 from flask_restx import Namespace, Resource
+
+from dao.model.user import user_schema
+from implemented import user_service
 
 user_ns = Namespace('users')
 
@@ -7,10 +11,13 @@ user_ns = Namespace('users')
 class UserViews(Resource):
 
     def get(self):
-        return ''
+        users = user_service.get_all()
+        return user_schema(many=True).dumps(users)
 
     def post(self):
-        return ''
+        req_json = request.json
+        user = user_service.create(req_json)
+        return user_schema.dumps(user)
 
 
 @user_ns.route('/<int:uid>')

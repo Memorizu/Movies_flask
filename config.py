@@ -5,3 +5,4 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     PWD_HASH_ITERATIONS = 100_000
     PWD_HASH_SALT = b'secret here'
+    ALGO = 'HS256'

@@ -19,3 +19,5 @@ class UserSchema(Schema):
 
 
 user_schema = UserSchema()
+
+
