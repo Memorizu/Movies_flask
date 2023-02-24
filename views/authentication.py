@@ -16,10 +16,10 @@ class AuthViews(Resource):
 
         if None in [username, password]:
             abort(401)
+
         tokens = auth_service.generate_tokens(username, password)
 
         return tokens, 201
-
 
     def put(self):
         req_json = request.json

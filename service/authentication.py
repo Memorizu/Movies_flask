@@ -1,9 +1,8 @@
 import datetime
 import calendar
 import jwt
-from flask import  abort
+from flask import abort
 from config import Config
-
 from service.user import UserService
 
 
@@ -33,7 +32,7 @@ class AuthService:
         data["exp"] = calendar.timegm(days130.timetuple())
         refresh_token = jwt.encode(data, Config.SECRET_HERE, algorithm=Config.ALGO)
         tokens = {"access_token": access_token, "refresh_token": refresh_token}
-
+        print(data)
         return tokens
 
     def approve_refresh_token(self, refresh_token):

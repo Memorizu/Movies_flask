@@ -1,8 +1,8 @@
 from flask import request
 from flask_restx import Namespace, Resource
-
 from dao.model.user import UserSchema
 from implemented import user_service
+
 
 user_ns = Namespace('users')
 
@@ -28,7 +28,9 @@ class UserViews(Resource):
         return UserSchema().dump(user)
 
     def put(self, uid):
-        return ''
+        req_json = request.json
+        user = user_service.update(uid, req_json)
+        return UserSchema().dump(user)
 
     def delete(self, uid):
         user_service.delete(uid)

@@ -18,6 +18,5 @@ class UserSchema(Schema):
     role = fields.Str()
 
 
-user_schema = UserSchema()
-users_schema = UserSchema(many=True)
+
 
