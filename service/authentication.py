@@ -32,7 +32,6 @@ class AuthService:
         data["exp"] = calendar.timegm(days130.timetuple())
         refresh_token = jwt.encode(data, Config.SECRET_HERE, algorithm=Config.ALGO)
         tokens = {"access_token": access_token, "refresh_token": refresh_token}
-        print(data)
         return tokens
 
     def approve_refresh_token(self, refresh_token):
