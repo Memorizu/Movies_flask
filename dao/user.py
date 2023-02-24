@@ -1,5 +1,6 @@
 from dao.model.user import User
-from implemented import auth_service
+
+
 
 class UserDAO:
 
@@ -14,7 +15,6 @@ class UserDAO:
 
     def create(self, data):
         new_user = User(**data)
-        new_user['password'] = auth_service.get_hash(new_user['password'])
         self.session.add(new_user)
         self.session.commit()
         return new_user
@@ -28,3 +28,5 @@ class UserDAO:
         self.session.delete(user)
         self.session.commit()
 
+    def get_by_name(self, username):
+        return self.session.query(User).filter(User.username == username).first()
